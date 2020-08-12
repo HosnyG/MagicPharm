@@ -1,0 +1,61 @@
+﻿@model ShoppingCartVM
+
+    <div class="row checkoutForm mt-5">
+        <h2>סל קניות</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>כמות</th>
+                    <th>מוצר</th>
+                    <th class="text-right">מחיר</th>
+                    <th class="text-right">סה"כ</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    <tr>
+                        <td class="text-center">@line.Amount</td>
+                        <td class="text-left">@line.Product.Name</td>
+                        <td class="text-right">@line.Product.Price.ToString("c")</td>
+                        <td class="text-right">
+                            @((line.Amount * line.Product.Price).ToString("c"))
+                        </td>
+                        <td class="text-center">
+                            <a class="text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-productId="@line.Product.Id">
+                                <i class="fas fa-minus-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">סה"כ</td>
+                    <td class="text-right">
+                        @Model.ShoppingCartTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="btn-group role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-success btn-sm">Check Out</button>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-dark btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    הוספת מוצרים
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <a asp-controller="Products" asp-action="ListView" asp-route-categoryId="@category.Id" class="dropdown-item">@category.Name</a>
+
+                    }
+
+                    <div class="dropdown-divider"></div>
+                    <a asp-controller="Products" asp-action="ListView" asp-route-categoryId="" class="dropdown-item">כל המוצרים</a>
+                </div>
+            </div>
+        </div>
+    </div>

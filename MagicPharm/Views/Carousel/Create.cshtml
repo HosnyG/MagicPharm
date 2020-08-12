@@ -1,0 +1,34 @@
+﻿@model MagicPharm.ViewModel.CarouselVM
+
+@{
+    ViewData["Title"] = "הוספת";
+}
+
+<h1 style="margin-top:10px">הוסף קרוסלה חדשה</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+
+            <!-- upload image-->
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input type="file" name="File" asp-for="File" class="form-control" style="padding:0px;padding-left:10px;padding-top:3px" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="הוסף" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary"style="margin-right:10px">חזרה לרשימה</a>
+            </div>
+        </form>
+    </div>
+</div>
+

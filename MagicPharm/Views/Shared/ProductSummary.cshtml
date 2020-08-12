@@ -1,0 +1,57 @@
+﻿@model Product
+<div class="col-sm-12 col-lg-4 col-md-6" style="margin-top:20px">
+    <div  class="portfolio-item mx-auto" data-toggle="modal" data-target="#item-@Model.Id">
+    <div class="img-thumbnail text-center portfolio-item-caption">
+        <img src="~/images/products/@Model.ImageUrl" alt="" style="height:180px;width:270px" />
+        <div class="figure-caption ">
+            <h5 class="pull-right" style="margin-right:5px">@Model.Price.ToString("c")</h5>
+            <h4 style="margin-right:5px">
+                <a>@Model.Name</a>
+            </h4>
+            <p>@Model.ShortDescription</p>
+        </div>
+        <div class="addToCart ">
+            <p class="text-center" style="margin-right:5px">
+                <a class="btn btn-success" id="cartButton" asp-controller="ShoppingCart" asp-action="AddToShoppingCart"
+                   asp-route-productId="@Model.Id">
+                    <i class="fas fa-cart-plus"></i>  הוסף לסל
+                </a>
+            </p>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="portfolio-modal modal fade" id="item-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+            </button>
+            <div class="modal-body text-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <!-- Portfolio Modal - Title-->
+                            <h2 class="portfolio-modal-title text-dark text-uppercase mb-0" id="portfolioModal1Label">@Model.Name</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- Portfolio Modal - Image-->
+                            <img class="img-fluid rounded mb-5" src="~/images/products/@Model.ImageUrl" alt="" />
+                            <!-- Portfolio Modal - Text-->
+                            <p class="mb-5">@Model.LongDescription</p>
+                            <button class="btn btn-dark" data-dismiss="modal">
+                                <i class="fas fa-times fa-fw"></i>
+                                סגור
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

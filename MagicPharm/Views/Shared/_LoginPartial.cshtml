@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item active">
+                    <a id="manage" class="nav-link btn btn-outline-light" asp-controller="AdminPage" asp-action="Index" title="Control Panel">לוח בקרה</a>
+                </li>
+
+            }
+
+            <li class="nav-item active">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link btn btn-link active">התנתק</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item active" style="margin-left:10px;margin-right:10px">
+                <a class="nav-link btn btn-outline-secondary" id="register" asp-area="Identity" asp-page="/Account/Register">הרשמה</a>
+            </li>
+            <li class="nav-item active" style="margin-left:10px;margin-right:10px;width:120px">
+                <a class="nav-link btn btn-outline-secondary" id="login" asp-area="Identity" asp-page="/Account/Login">כניסה</a>
+            </li>
+        }
+

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Product>
+@await Component.InvokeAsync("Carousels")
+
+<h2 style="margin-top:18px" >המוצרים המועדפים השבוע ! </h2>
+
+<div class="row">
+    @foreach (var Product in Model)
+    {
+        @await Html.PartialAsync("ProductSummary", Product)
+
+    }
+</div>

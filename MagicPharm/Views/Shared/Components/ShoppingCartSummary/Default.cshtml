@@ -1,0 +1,14 @@
+﻿@model ShoppingCartVM
+
+
+@if (!User.IsInRole("Admin") && User.Identity.IsAuthenticated)
+{
+    <li class="nav-item active">
+        <a class="nav-link" asp-controller="ShoppingCart" asp-action="Index">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-status" >
+                @Model.ShoppingCart.ShoppingCartItems.Count
+            </span>
+        </a>
+    </li>
+} 

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "ניהול מוצרים";
+}
+
+<h1  style="margin-top:15px">ניהול מוצרים</h1>
+<hr />
+<br />
+<h5> בחר קטגוריה :</h5>
+
+<div>
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            @foreach (var item in Model)
+            {
+                <a class="ofProducts" asp-controller="Products" asp-action="List" asp-route-categoryId="@item.Id">
+                <div class="contact100-form-title HoverProducts" style="margin-top:30px;background-image:url('../../images/categories/@item.ImageUrl');border: 1px solid gray;border-radius: 20px;">
+                    <span class="contact100-form-title-1">
+                        @item.Name
+                    </span>
+                </div>
+                </a>
+            }
+
+        </div>
+    </div>
+</div>

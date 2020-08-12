@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Product>
+@{
+    Layout = "_Layout";
+}
+<div >
+    <h3 class="mt-4">@ViewBag.Name</h3>
+</div>
+<hr />
+@{
+    <div class="row">
+        @foreach (var Product in Model)
+        {
+            @await Html.PartialAsync("ProductSummary", Product)
+
+        }
+    </div>
+}

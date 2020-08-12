@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<html lang="he" dir="rtl" >
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+
+    @*<link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/twitter-bootstrap/css/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/lib/twitter-bootstrap/css/bootstrap-reboot.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/contactUs.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <script src="https://kit.fontawesome.com/e2fe96d9d2.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <img src="~/images/logo/logo2.png" style="width:50px;height:35px" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">דף הבית <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="ContactUs">צור קשר</a>
+                </li>
+
+                @await Component.InvokeAsync("CategoryMenu")
+            </ul>
+            <form class="form-inline mr-auto" asp-controller="Products" asp-action="Search">
+                <a class="nav-link" id="mic"><i class="fas fa-microphone"></i></a>
+                <div class="input-group">
+                    <input id="searchInput" class="form-control" name="term" type="search" placeholder="חפש" aria-label="Search" />
+                    <div class="input-group-append">
+                        <button id="searchSubmit" class="btn btn-secondary" type="submit">Search</button>
+                    </div>
+
+                </div>
+            </form>
+            <ul class="navbar-nav ">
+                @await Component.InvokeAsync("ShoppingCartSummary")
+                @await Html.PartialAsync("_LoginPartial")
+
+            </ul>
+
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <br /><hr /><br />
+    @*<footer>
+            <p class="container"><a target="_blank" href="https://google.co.il"> &copy; 2020 - Magic Pharm</a></p>
+        </footer>*@
+
+    <!-- Footer-->
+    <footer class="footer text-center">
+        <div class="container" id="About">
+            <div class="row">
+                <!-- Footer Location-->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">כתובת</h5>
+                    <p class="lead mb-0">
+                        כביש ראשי מיקוד: 30100
+                        באקה אל גרביה
+
+                        <br />
+                        מספר טלפון:
+                        04-6381011
+                    </p>
+                </div>
+                <!-- Footer Social Icons-->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">חפשו אותנו ברשתות החברתיות</h5>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-snapchat"></i></a>
+                </div>
+                <!-- Footer About Text-->
+
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/jquery.js"></script>
+
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/contactUs.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

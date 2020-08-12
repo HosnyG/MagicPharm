@@ -1,0 +1,38 @@
+﻿@model MagicPharm.ViewModel.CarouselVM
+
+
+@{
+    ViewData["Title"] = "עדכן קרוסלה";
+}
+
+<h1>עדכן קרוסלה</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <input readonly asp-for="CarouselId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <!--Image-->
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input asp-for="File" type="file" name="File" class="form-control" style="padding:0px;padding-left:10px;padding-top:3px" />
+                <span asp-validation-for="File" class="text-danger"></span><br />
+                <img src="~/images/carousels/@Model.ImgUrl" class="img-thumbnail" style="width:500px;height:200px" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="שמור" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary" style="margin-right:10px">חזרה לרשימה</a>
+            </div>
+        </form>
+    </div>
+</div>
+
